@@ -1,7 +1,9 @@
 import 'dart:convert';
+
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:pokedex/pokedex.dart';
+import 'package:pokedex/pokemon_detail.dart';
 
 class PokemonList extends StatefulWidget {
   @override
@@ -33,6 +35,7 @@ class _PokemonListState extends State<PokemonList> {
         title: Text("Pokedex"),
         backgroundColor: Colors.cyan,
       ),
+      drawer: Drawer(),
       body: pokedex == null
           ? Center(
               child: CircularProgressIndicator(),
@@ -40,18 +43,34 @@ class _PokemonListState extends State<PokemonList> {
           : GridView.count(
               crossAxisCount: 2,
               children: pokedex.pokemon
-                  .map((p) => Card(
-                        elevation: 3.0,
-                        child: Column(
-                          children: <Widget>[
-                            Container(
-                              height: 100,
-                              width: 100,
-                              decoration: BoxDecoration(
-                                  image: DecorationImage(
-                                      image: NetworkImage(p.img))),
-                            )
-                          ],
+                  .map((p) => Padding(
+                        padding: const EdgeInsets.all(2.0),
+                        child: InkWell(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => PokemonDetail(
+                                          pokemon: p,
+                                        )));
+                          },
+                          child: Hero(
+                            tag: p.img,
+                            child: Card(
+                              elevation: 3.0,
+                              child: Column(
+                                children: <Widget>[
+                                  Container(
+                                    height: 100,
+                                    width: 100,
+                                    decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                            image: NetworkImage(p.img))),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ),
                         ),
                       ))
                   .toList(),

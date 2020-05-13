@@ -5,6 +5,6 @@ void main() {
   runApp(MaterialApp(
     title: "Pokedex App",
     home: PokemonList(),
-    debugShowCheckedModeBanner: true,
+    debugShowCheckedModeBanner: false,
   ));
 }
