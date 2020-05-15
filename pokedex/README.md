@@ -1,6 +1,6 @@
 # pokedex
 
-A another pokemon application.
+Another pokemon application
 
 ## Getting Started
 
