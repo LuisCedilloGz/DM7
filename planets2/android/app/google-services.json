@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "132249243077",
+    "firebase_url": "https://planets2-55109.firebaseio.com",
+    "project_id": "planets2-55109",
+    "storage_bucket": "planets2-55109.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:132249243077:android:53a8532d1fe12f9bbc0fac",
+        "android_client_info": {
+          "package_name": "mx.intem.planets2"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "132249243077-igseg724m9j1ebmhdc0po9g57s25rfnr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCCHt2xBYrp03rpWmXyLBR4gGjt16GyjYY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "132249243077-igseg724m9j1ebmhdc0po9g57s25rfnr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
