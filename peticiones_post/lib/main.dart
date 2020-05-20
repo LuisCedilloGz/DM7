@@ -4,7 +4,7 @@ import 'package:peticiones_post/home.dart';
 void main() {
   runApp(
     MaterialApp(
-      title: "Peticiones Post",
+      title: "Post_app",
       home: Home(),
       debugShowCheckedModeBanner: false,
     )

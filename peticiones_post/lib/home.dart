@@ -1,40 +1,22 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'package:peticiones_post/json/json.dart';
+import 'package:peticiones_post/post.dart';
 import 'package:peticiones_post/comments.dart';
+import 'package:peticiones_post/get_data.dart';
 
 class Home extends StatefulWidget {
-  Home({Key key}) : super(key: key);
-
   @override
   _HomeState createState() => _HomeState();
 }
 
 class _HomeState extends State<Home> {
-  List<Json> _notes = List<Json>();
-
-  Future<List<Json>> fetchJson() async {
-    var url = 'https://jsonplaceholder.typicode.com/posts';
-    var response = await http.get(url);
-
-    var notes = List<Json>();
-
-    if (response.statusCode == 200) {
-      var notesJson = json.decode(response.body);
-
-      for (var noteJson in notesJson) {
-        notes.add(Json.fromJson(noteJson));
-      }
-    }
-
-    return notes;
-  }
+  Data data = new Data();
+  List<Post> _post = List<Post>();
+  
 
   @override
   void initState() {
-    fetchJson().then((value) => setState(() {
-          _notes.addAll(value);
+    data.getPost().then((value) => setState(() {
+          _post.addAll(value);
         }));
     super.initState();
   }
@@ -51,28 +33,36 @@ class _HomeState extends State<Home> {
         backgroundColor: Colors.deepPurple,
       ),
       body: ListView.builder(
+        
+        itemCount: _post.length,
         itemBuilder: (context, index) {
           return Card(
+            margin: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+            color: Colors.amber,
             child: InkWell(
               splashColor: Colors.deepPurple,
               onTap: () {
-                print("presionado");
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => Comments()));
+                print("postId ${_post[index].id}");
+
+                Navigator.of(context).push(
+                    MaterialPageRoute(
+                        builder: (context) =>
+                            Comments(post: _post[index])));
               },
               child: Padding(
                 padding: const EdgeInsets.only(
                     top: 32.0, bottom: 32.0, right: 20.0, left: 20.0),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+                  //crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisSize: MainAxisSize.min,
                   children: <Widget>[
                     Text(
-                      _notes[index].titulo,
+                      _post[index].title,
                       style:
                           TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                     ),
                     Text(
-                      _notes[index].texto,
+                      _post[index].body,
                       style: TextStyle(color: Colors.blueGrey.shade600),
                     ),
                   ],
@@ -81,13 +71,13 @@ class _HomeState extends State<Home> {
             ),
           );
         },
-        itemCount: _notes.length,
+        
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add, color: Colors.red),
         backgroundColor: Colors.white,
         onPressed: () {
-          print("length: ${_notes.length}");
+          print("length: ${_post.length}");
         },
       ),
     );
