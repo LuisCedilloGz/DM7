@@ -19,8 +19,8 @@ class Data {
     return posts;
   }
 
-  Future<List<Comment>> getComments() async {
-    var url = 'https://jsonplaceholder.typicode.com/comments';
+  Future<List<Comment>> getComments(int postId) async {
+    var url = 'https://jsonplaceholder.typicode.com/posts/$postId/comments';
     var response = await http.get(url);
 
     var comments = List<Comment>();

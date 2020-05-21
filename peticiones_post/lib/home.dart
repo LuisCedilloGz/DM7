@@ -11,16 +11,13 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   Data data = new Data();
   List<Post> _post = List<Post>();
-  List<Comment> _comments = List<Comment>();
 
   @override
   void initState() {
     data.getPost().then((value) => setState(() {
           _post.addAll(value);
         }));
-    data.getComments().then((value) => setState(() {
-          _comments.addAll(value);
-        }));
+
     super.initState();
   }
 
@@ -40,34 +37,26 @@ class _HomeState extends State<Home> {
         itemBuilder: (context, index) {
           return Card(
             margin: EdgeInsets.all(5),
-            color: Colors.cyan,
+            color: Colors.black87,
             child: Column(
               children: <Widget>[
-                InkWell(
-                  splashColor: Colors.deepPurple,
-                  onTap: () {
-                    print("postId ${_post[index].id}");
-                    Navigator.of(context).push(MaterialPageRoute(
-                        builder: (context) => Comments(post: _post[index], comments: _comments,)));
-                  },
-                  child: Padding(
-                    padding: const EdgeInsets.only(
-                        top: 16.0, right: 20.0, left: 20.0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.min,
-                      children: <Widget>[
-                        Text(
-                          _post[index].title,
-                          style: TextStyle(
-                              fontSize: 22, fontWeight: FontWeight.bold),
-                        ),
-                        Text(
-                          _post[index].body,
-                          style: TextStyle(color: Colors.blueGrey.shade600),
-                        ),
-                      ],
-                    ),
+                Padding(
+                  padding:
+                      const EdgeInsets.only(top: 16.0, right: 20.0, left: 20.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      Text(
+                        _post[index].title,
+                        style: TextStyle(
+                          color: Colors.white,
+                            fontSize: 20, fontWeight: FontWeight.bold),
+                      ),
+                      Text("\n${_post[index].body}",
+                        style: TextStyle(color: Colors.white54),
+                      ),
+                    ],
                   ),
                 ),
                 Padding(
@@ -75,17 +64,44 @@ class _HomeState extends State<Home> {
                   child: Container(
                     margin: EdgeInsets.all(5),
                     width: MediaQuery.of(context).size.width - 40,
-                    color: Colors.blue,
-                    height: 32,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: <Widget>[
-                        Icon(Icons.thumb_up),
-                        Text(" 0 "),
-                        Icon(Icons.comment),
-                        Text(" ${
-                         _comments[index].id                        } "),
-                        Icon(Icons.share)
+                        IconButton(
+                          color: Colors.red[600],
+                          iconSize: 24,
+                          splashColor: Colors.blue,
+                          icon: Icon(Icons.thumb_up),
+                          onPressed: () {},
+                        ),
+                        Text(
+                          "0",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20),
+                        ),
+                        IconButton(
+                          color: Colors.red[600],
+                          iconSize: 24,
+                          splashColor: Colors.blue,
+                          icon: Icon(Icons.comment),
+                          onPressed: () {
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => Comments(
+                                      post: _post[index],
+                                    )));
+                          },
+                        ),
+                        Text("5", style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 20)),
+                        IconButton(
+                          color: Colors.red[600],
+                          iconSize: 24,
+                          splashColor: Colors.blue,
+                          icon: Icon(Icons.share),
+                          onPressed: () {},
+                        ),
                       ],
                     ),
                   ),
@@ -93,13 +109,6 @@ class _HomeState extends State<Home> {
               ],
             ),
           );
-        },
-      ),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add, color: Colors.red),
-        backgroundColor: Colors.white,
-        onPressed: () {
-          print("length: ${_post.length}");
         },
       ),
     );
