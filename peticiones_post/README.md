@@ -1,14 +1,12 @@
-# peticiones_post
-
 # Proyecto que permite visualizar posts y sus comentarios desde recurso Json remoto.
 
-## Instituto Tecnológico de Saltillo
-##            Sistemas Computacionales
+### Instituto Tecnológico de Saltillo
+###            Sistemas Computacionales
             
-## Luis Angel Cedillo González
-## NC: 15050932
+### Luis Angel Cedillo González
+### NC: 15050932
 
-## Getting Started
+### Getting Started
 
 This project is a starting point for a Flutter application.
 
