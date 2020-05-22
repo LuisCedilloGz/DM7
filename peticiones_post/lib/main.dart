@@ -1,3 +1,6 @@
+/*
+Método main de la aplicación.
+*/
 import 'package:flutter/material.dart';
 import 'package:peticiones_post/home.dart';
 

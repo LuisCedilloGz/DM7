@@ -1,6 +1,12 @@
 # peticiones_post
 
-A new Flutter project.
+Proyecto que permite visualizar posts y sus comentarios desde recurso Json remoto.
+
+Instituto Tecnológico de Saltillo
+            Sistemas Computacionales
+            
+Luis Angel Cedillo González
+NC: 15050932
 
 ## Getting Started
 

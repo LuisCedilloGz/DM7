@@ -1,3 +1,7 @@
+/*
+Clases donde se definen los objetos de Posts y Comments a partir del archivo Json.
+*/
+
 class Post {
   int userId;
   int id;
